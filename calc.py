@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from subject_list import ALL_COMMON_SUBJECTS, DEPARTMENT_COMMON_SUBJECTS, \
+                         GLOBAL_INTERNATIONAL_SUBJECTS, GLOBAL_POLICY_SUBJECTS
 
 app = Flask(__name__)
 subjects = {
@@ -89,10 +91,11 @@ subjects = {
     20030040: {"name": "国際協力", "credits": 1},
 }
 
+
 @app.route('/')
 def index():
-    return render_template('common.html',subjects = subjects)
+    return render_template('common.html', subjects=subjects)
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True)
