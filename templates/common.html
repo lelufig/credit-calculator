@@ -2,37 +2,43 @@
 <html lang="ja">
 
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename = 'css/clac.css')}}">
 </head>
 
 <body>
   <h1>全学年共通科目</h1>
   <h2>国際政策学部の必要単位数は22単位以上です。</h2>
-<div class="content">
+  <div class="content">
 
 
-  <form class="" action="common.html" method="post">
+    <form class="" action="common.html" method="post">
 
 
-    <table border="1">
-      <tr>
-        <th width="230">授業名</th>
-        <th width="100">単位数</th>
-        <th width="100">履修予定・済</th>
-      </tr>
+      <table border="1">
+        <tr>
+          <th width="230">授業名</th>
+          <th width="100">単位数</th>
+          <th width="100">履修予定・済</th>
+        </tr>
 
-      {% for key, value in subjects.items() %}
-      <tr>
-        <td>{{ value["name"]}}</td>
-        <td>{{value["credits"]}}</td>
-        <td><input type="checkbox" name="check"></td>
-      </tr>
-      {% endfor %}
-    </table>
+        {% for key, value in subjects.items() %}
+        <tr>
+          <td>{{ value["name"]}}</td>
+          <td>{{value["credits"]}}</td>
+          <td><input type="checkbox" name="check"></td>
+        </tr>
+        {% endfor %}
+      </table>
 
-    <input type="submit"  value="結果">
-  </form>
-</div>
+      <input type="submit" value="結果">
+    </form>
+  </div>
 
 </body>
 
