@@ -53,7 +53,7 @@ def common_result():
 
 
 
-@app.route('faculty/<department>/<cource>')
+@app.route('/faculty/<department>/<cource>')
 def faculty_common(department, cource):
     pass
 
