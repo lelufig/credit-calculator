@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/clac.css')}}">
-</head>
-
-<body>
-  <div class="table-responsive">
-    <table class="table table-bordered">
+{% extends "layout.html" %}
+{% block content %}
+<div class="table-responsive">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th scope="col"></th>
@@ -24,57 +12,56 @@
     </thead>
     <tbody>
       <tr>
-         <th scope="row">必要単位数（22単位以上）</th>
-         <td>{{ sum_credit['単位数合計'] }}</td>
-         <td>{{ lack_credit['単位数合計'] }}</td>
-         {% if lack_credit['単位数合計'] == 0 %}
-         <td>合格</td>
-         {% else %}
-         <td>単位数が足りていません</td>
-         {% endif %}
+        <th scope="row">必要単位数（22単位以上）</th>
+        <td>{{ sum_credit['単位数合計'] }}</td>
+        <td>{{ lack_credit['単位数合計'] }}</td>
+        {% if lack_credit['単位数合計'] == 0 %}
+        <td>合格</td>
+        {% else %}
+        <td>単位数が足りていません</td>
+        {% endif %}
       </tr>
       <tr>
-         <th scope="row">スタートアップ・セミナー</th>
-         <td>{{ sum_credit['スタートアップ・セミナー'] }}</td>
-         <td>{{ lack_credit['スタートアップ・セミナー'] }}</td>
-         {% if lack_credit['スタートアップ・セミナー'] == 0 %}
-         <td>合格</td>
-         {% else %}
-         <td>スタートアップ・セミナーの単位が足りていません</td>
-         {% endif %}
+        <th scope="row">スタートアップ・セミナー</th>
+        <td>{{ sum_credit['スタートアップ・セミナー'] }}</td>
+        <td>{{ lack_credit['スタートアップ・セミナー'] }}</td>
+        {% if lack_credit['スタートアップ・セミナー'] == 0 %}
+        <td>合格</td>
+        {% else %}
+        <td>スタートアップ・セミナーの単位が足りていません</td>
+        {% endif %}
       </tr>
       <tr>
-         <th scope="row">外国語</th>
-         <td>{{ sum_credit['外国語'] }}</td>
-         <td>{{ lack_credit['外国語'] }}</td>
-         {% if lack_credit['外国語'] == 0 %}
-         <td>合格</td>
-         {% else %}
-         <td>外国語の単位が足りていません</td>
-         {% endif %}
+        <th scope="row">外国語</th>
+        <td>{{ sum_credit['外国語'] }}</td>
+        <td>{{ lack_credit['外国語'] }}</td>
+        {% if lack_credit['外国語'] == 0 %}
+        <td>合格</td>
+        {% else %}
+        <td>外国語の単位が足りていません</td>
+        {% endif %}
       </tr>
       <tr>
-         <th scope="row">基礎科目</th>
-         <td>{{ sum_credit['基礎科目'] }}</td>
-         <td>{{ lack_credit['基礎科目'] }}</td>
-         {% if lack_credit['基礎科目'] == 0 %}
-         <td>合格</td>
-         {% else %}
-         <td>基礎科目の単位が足りていません</td>
-         {% endif %}
+        <th scope="row">基礎科目</th>
+        <td>{{ sum_credit['基礎科目'] }}</td>
+        <td>{{ lack_credit['基礎科目'] }}</td>
+        {% if lack_credit['基礎科目'] == 0 %}
+        <td>合格</td>
+        {% else %}
+        <td>基礎科目の単位が足りていません</td>
+        {% endif %}
       </tr>
       <tr>
-         <th scope="row">教養科目</th>
-         <td>{{ sum_credit['教養科目'] }}</td>
-         <td>{{ lack_credit['教養科目'] }}</td>
-         {% if lack_credit['教養科目'] == 0 %}
-         <td>合格</td>
-         {% else %}
-         <td>教養科目の単位が足りていません</td>
-         {% endif %}
+        <th scope="row">教養科目</th>
+        <td>{{ sum_credit['教養科目'] }}</td>
+        <td>{{ lack_credit['教養科目'] }}</td>
+        {% if lack_credit['教養科目'] == 0 %}
+        <td>合格</td>
+        {% else %}
+        <td>教養科目の単位が足りていません</td>
+        {% endif %}
       </tr>
     </tbody>
-    </table>
-  </div>
-
-</body>
+  </table>
+</div>
+{% endblock %}
