@@ -17,26 +17,35 @@
   <div class="content">
 
 
-    <form class="" action="common.html" method="post">
+    <form class="" action="common_result" method="post">
 
 
-      <table border="1">
+      <table class="table table-striped">
+      <thead>
         <tr>
-          <th width="230">授業名</th>
-          <th width="100">単位数</th>
-          <th width="100">履修予定・済</th>
+          <th scope="col">授業名</th>
+          <th scope="col">単位数</th>
+          <th scope="col">履修予定・済</th>
         </tr>
-
+      </thead>
+      <tbody>
         {% for key, value in subjects.items() %}
         <tr>
-          <td>{{ value["name"]}}</td>
-          <td>{{value["credits"]}}</td>
-          <td><input type="checkbox" name="check"></td>
+          <td>{{ value["name"] }}</td>
+          <td>{{ value["credits"] }}</td>
+          <td>
+        <div class="form-check">
+            <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" aria-label="..." name="{{ key }}">
+          </div>
+          </td>
         </tr>
         {% endfor %}
-      </table>
+      </tbody>
 
-      <input type="submit" value="結果">
+
+      </table>
+      <button type="submit" class="btn btn-info btn-lg btn-block">Send</button>
+
     </form>
   </div>
 
