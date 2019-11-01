@@ -13,11 +13,11 @@ def subjects_sum(subject_id_list, my_credits):
 
 
 @app.route('/')
-def common_subjeccts():
-    return render_template('common.html', subjects=ALL_COMMON_SUBJECTS)
+def index():
+    return render_template('top.html')
 
 
-@app.route('/common', methods=['POST'])
+@app.route('/common', methods=['GET', 'POST'])
 def common():
     if request.method == 'POST':
         result = request.form
@@ -45,7 +45,7 @@ def common():
         return render_template('common_result.html', sum_credit=sum_credit, lack_credit=lack_credit)
 
     else:
-        render_template('common.html', subjects=ALL_COMMON_SUBJECTS)
+        return render_template('common.html', subjects=ALL_COMMON_SUBJECTS)
 
 
 @app.route('/faculty_common')
