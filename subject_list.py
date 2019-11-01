@@ -86,7 +86,7 @@ ALL_COMMON_SUBJECTS = {
     20030040: {"name": "国際協力", "credits": 1},
 }
 
-DEPARTMENT_COMMON_SUBJECTS = {
+FACULTY_COMMON_SUBJECTS = {
     22010010: {"name": "国際政策入門(地域マネジメント)", "credits": 2},
     22010020: {"name": "国際政策入門(国際ビジネス観光)", "credits": 2},
     22010030: {"name": "国際政策入門(国際コミュニケーション)", "credits": 2},
