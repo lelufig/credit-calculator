@@ -4,7 +4,7 @@
   <h1>全学年共通科目</h1>
   <h2>国際政策学部の必要単位数は22単位以上です。</h2>
 
-  <form class="" action="common" method="post">
+  <form class="" action="/common/{{ department }}/{{ cource }}/{{ chinese }}" method="post">
 
     <table class="table table-striped">
       <thead>
@@ -28,7 +28,7 @@
         {% endfor %}
       </tbody>
     </table>
-    
+
     <button type="submit" class="btn btn-info btn-lg btn-block">計算</button>
 
   </form>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from subject_list import ALL_COMMON_SUBJECTS, FACULTY_COMMON_SUBJECTS, \
                          GLOBAL_INTERNATIONAL_SUBJECTS, GLOBAL_POLICY_SUBJECTS
 
@@ -17,8 +17,20 @@ def index():
     return render_template('top.html')
 
 
-@app.route('/common', methods=['GET', 'POST'])
-def common():
+@app.route('/form', methods=['GET', 'POST'])
+def form():
+    if request.method == 'POST':
+        result = request.form
+        department = result['department']
+        cource = result['cource']
+        chinese = result['chinese']
+        return redirect(f'/common/{department}/{cource}/{chinese}')
+    else:
+        return render_template('form.html')
+
+
+@app.route('/common/<department>/<cource>/<chinese>', methods=['GET', 'POST'])
+def common(department, cource, chinese):
     if request.method == 'POST':
         result = request.form
         my_credits = dict()
@@ -42,10 +54,19 @@ def common():
         lack_credit['スタートアップ・セミナー'] = max(0, 1 - sum_credit['スタートアップ・セミナー'])
         lack_credit['単位数合計'] = max(0, 22 - sum_credit['単位数合計'])
 
-        return render_template('common_result.html', sum_credit=sum_credit, lack_credit=lack_credit)
+        return render_template('common_result.html',
+                               sum_credit=sum_credit,
+                               lack_credit=lack_credit,
+                               department=department,
+                               cource=cource,
+                               chinese=chinese)
 
     else:
-        return render_template('common.html', subjects=ALL_COMMON_SUBJECTS)
+        return render_template('common.html',
+                               subjects=ALL_COMMON_SUBJECTS,
+                               department=department,
+                               cource=cource,
+                               chinese=chinese)
 
 
 @app.route('/faculty_common')
@@ -53,8 +74,8 @@ def faculty_common():
     return render_template('faculty_common.html', subjects=FACULTY_COMMON_SUBJECTS)
 
 
-@app.route('/faculty/<department>/<cource>', methods=['GET', 'POST'])
-def major(department, cource):
+@app.route('/faculty/<department>/<cource>/<chinese>', methods=['GET', 'POST'])
+def major(department, cource, chinese):
     if request.method == 'POST':
         result = request.form
         my_credits = dict()
@@ -144,7 +165,8 @@ def major(department, cource):
                                sum_credit=sum_credit,
                                lack_credit=lack_credit,
                                department=department,
-                               cource=cource)
+                               cource=cource,
+                               chinese=chinese)
 
     else:
         if department == "gi":
@@ -158,7 +180,8 @@ def major(department, cource):
                                subjects=FACULTY_COMMON_SUBJECTS,
                                major_subjects=major_subjects,
                                department=department,
-                               cource=cource)
+                               cource=cource,
+                               chinese=chinese)
 
 
 if __name__ == '__main__':
