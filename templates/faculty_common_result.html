@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">取得単位数</th>
+          <th scope="col">不足単位数</th>
+          <th scope="col">判定</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in sum_credit.keys() %}
+        <tr>
+          <th scope="row">{{ item }}
+            {% if 'コース' in item %}
+            ({{ cource.upper() }})
+            {% endif %}
+          </th>
+          <td>{{ sum_credit[item] }}</td>
+          <td>{{ lack_credit[item] }}</td>
+          {% if lack_credit[item] == 0 %}
+          <td>合格</td>
+          {% else %}
+          <td>{{ item }}の単位数が足りていません</td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
