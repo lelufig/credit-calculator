@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+
+  <h1>学科専門科目</h1>
+
+
+
+  <form class="" action="faculty_common" method="post">
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">授業名</th>
+          <th scope="col">単位数</th>
+          <th scope="col">履修予定・済</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for key, value in subjects.items() %}
+        <tr>
+          <td>{{ value["name"] }}</td>
+          <td>{{ value["credits"] }}</td>
+          <td>
+            <div class="form-check">
+              <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" aria-label="..." name="{{ key }}">
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+
+    </table>
+
+    {% if department == 'gi' %}
+    <h2>国コミュ基礎科目・展開科目</h2>
+    {% else %}
+    <h2>総政基礎科目・展開科目</h2>
+    {% endif %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">授業名</th>
+          <th scope="col">単位数</th>
+          <th scope="col">履修予定・済</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for key, value in major_subjects.items() %}
+        <tr>
+          <td>{{ value["name"] }}</td>
+          <td>{{ value["credits"] }}</td>
+          <td>
+            <div class="form-check">
+              <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" aria-label="..." name="{{ key }}">
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+
+    </table>
+    <button type="submit" class="btn btn-info btn-lg btn-block">計算</button>
+
+  </form>
+
+</div>
+
+{% endblock %}
