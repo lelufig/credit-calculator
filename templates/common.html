@@ -14,7 +14,27 @@
         </tr>
       </thead>
       <tbody>
+
         {% for key, value in subjects.items() %}
+
+        {% if key == 10010010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">スタートアップ・セミナー</td>
+        </tr>
+        {% elif key == 10110010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">外国語</td>
+        </tr>
+        {% elif key == 10120010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">基礎科目</td>
+        </tr>
+        {% elif key == 10210010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">教養科目</td>
+        </tr>
+        {% endif %}
+
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
           <td class="table-center">{{ value["credits"] }}</td>
@@ -26,6 +46,9 @@
         </tr>
         {% endfor %}
 
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">自由科目</td>
+        </tr>
         <tr>
           <td><label for="10310010">自由科目(単位数を入力)</label></td>
           <td></td>

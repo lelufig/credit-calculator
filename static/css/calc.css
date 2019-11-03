@@ -50,3 +50,8 @@ input.form-narrow {
 .table-center {
   text-align: center;
 }
+
+.table-emphasis {
+  font-size: 24px;
+  font-weight: bold;
+}

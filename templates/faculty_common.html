@@ -20,6 +20,44 @@
       <tbody>
         {% for key, value in subjects.items() %}
 
+        {% if key == 22010010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">導入科目</td>
+        </tr>
+        {% elif key == 22110010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">学部教養科目（人文・社会）</td>
+        </tr>
+        {% elif key == 22130010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">学部教養科目（汎用的技能）</td>
+        </tr>
+        {% elif key == 22140010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">学部教養演習</td>
+        </tr>
+        {% elif key == 22210010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">国際ビジネス・観光基礎</td>
+        </tr>
+        {% elif key == 22310010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">国際ビジネス・観光展開</td>
+        </tr>
+        {% elif key == 22330010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">コース共通展開</td>
+        </tr>
+        {% elif key == 22410010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">実践演習科目</td>
+        </tr>
+        {% elif key == 22510010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">外国語</td>
+        </tr>
+        {% endif %}
+
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
           <td class="table-center">{{ value["credits"] }}</td>
@@ -31,6 +69,7 @@
         </tr>
 
         {% if key == 22140050 %}
+        <td class="table-center table-emphasis" colspan="3">{{ '国際コミュニケーション' if department == 'gi' else '地域マネジメント' }}基礎</td>
         {% for key, value in major_subjects['basic'].items() %}
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
@@ -43,6 +82,7 @@
         </tr>
         {% endfor %}
         {% elif key == 22210110 %}
+        <td class="table-center table-emphasis" colspan="3">{{ '国際コミュニケーション' if department == 'gi' else '地域マネジメント' }}展開</td>
         {% for key, value in major_subjects['advanced'].items() %}
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
@@ -59,11 +99,17 @@
         {% endfor %}
 
         <tr>
+          <td class="table-center table-emphasis" colspan="3">外国語自由科目</td>
+        </tr>
+        <tr>
           <td><label for="22530010">外国語自由科目(単位数を入力)</label></td>
           <td></td>
           <td class="table-center"><input class="form-control form-narrow" type="number" name="22530010_credits" value="0" required></td>
         </tr>
 
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">自由科目</td>
+        </tr>
         <tr>
           <td><label for="22610010">自由科目(単位数を入力)</label></td>
           <td></td>
