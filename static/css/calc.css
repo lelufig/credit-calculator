@@ -28,8 +28,10 @@ header {
 }
 
 .top-p {
-  text-align: center;
-  font-size: 50px
+  text-align: left;
+  font-size: 18px;
+  font-family: 'arial narrow';
+  margin: 20px;
 }
 
 .icon {
