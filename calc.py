@@ -127,7 +127,7 @@ def major(department, cource, chinese, common_sum):
         requirements = REQUIREMENTS['学科専門科目']
 
         sum_credit = OrderedDict()
-        sum_credit['学科専門科目'] = subjects_sum(my_credits.keys(), my_credits)
+        sum_credit['学科専門科目'] = subjects_sum(my_credits.keys(), my_credits) + int(result['22530010_credits']) + int(result['22610010_credits'])
         sum_credit['導入科目'] = subjects_sum(requirements['導入科目'], my_credits)
         sum_credit['学部教養科目（人文・社会）'] = subjects_sum(requirements['学部教養科目（人文・社会）'], my_credits)
         sum_credit['学部教養科目（汎用的技能）'] = subjects_sum(requirements['学部教養科目（汎用的技能）'], my_credits)
@@ -138,7 +138,7 @@ def major(department, cource, chinese, common_sum):
         if chinese == 'yes':
             sum_credit['中国語通年単位'] = subjects_sum(requirements['中国語通年単位'], my_credits)
 
-        sum_credit['外国語'] = subjects_sum(requirements['外国語'], my_credits)
+        sum_credit['外国語'] = subjects_sum(requirements['外国語'], my_credits) + int(result['22530010_credits'])
         sum_credit['♢印'] = subjects_sum(requirements['♢印'], my_credits)
 
         lack_credit = OrderedDict()
