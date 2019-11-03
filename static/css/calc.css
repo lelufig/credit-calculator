@@ -3,6 +3,10 @@ input[type=checkbox] {
   margin: auto;
 }
 
+body {
+  padding-top: 70px;
+}
+
 header {
   font-family: 'Raleway', sans-serif;
 }
