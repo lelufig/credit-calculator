@@ -1,6 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
-  <a href="{{ url_for('form') }}">単位計算アプリはここ</a>
-</div>
+<body id="top_body">
+
+
+  <div class="container">
+    <p class="top-p">Hello</p>
+    <i class="icon fab fa-earlybirds icon-color"></i>
+    <p class="top-p"></p>
+
+    <button onclick="location.href='/form'" class="btn btn-info btn-lg btn-block">単位計算をはじめる</button>
+  </div>
+
+</body>
 {% endblock %}

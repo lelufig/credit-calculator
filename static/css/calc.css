@@ -1,14 +1,44 @@
 input[type=checkbox] {
   transform: scale(1.5);
   margin: auto;
+
 }
 
 body {
   padding-top: 70px;
 }
 
+#top_body {
+  padding-top: 70px;
+  background-color: #fff;
+}
+
 header {
   font-family: 'Raleway', sans-serif;
+  background-color: #ffb6c1;
+}
+
+.container h1 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.icon-color{
+  color: #ffc107
+}
+
+.top-p {
+  text-align: center;
+  font-size: 50px
+}
+
+.icon {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  font-size: 150px;
 }
 
 input.form-narrow {
