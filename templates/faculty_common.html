@@ -13,16 +13,16 @@
       <thead>
         <tr>
           <th scope="col">授業名</th>
-          <th scope="col">単位数</th>
-          <th scope="col">履修予定・済</th>
+          <th scope="col" class="table-center">単位数</th>
+          <th scope="col" class="table-center">履修予定・済</th>
         </tr>
       </thead>
       <tbody>
         {% for key, value in subjects.items() %}
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
-          <td>{{ value["credits"] }}</td>
-          <td>
+          <td class="table-center">{{ value["credits"] }}</td>
+          <td class="table-center">
             <div class="form-check">
               <input class="form-check-input position-static" type="checkbox" id="{{ key }}" aria-label="..." name="{{ key }}">
             </div>
@@ -43,24 +43,37 @@
       <thead>
         <tr>
           <th scope="col">授業名</th>
-          <th scope="col">単位数</th>
-          <th scope="col">履修予定・済</th>
+          <th scope="col" class="table-center">単位数</th>
+          <th scope="col" class="table-center">履修予定・済</th>
         </tr>
       </thead>
       <tbody>
+
         {% for key, value in major_subjects.items() %}
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
-          <td>{{ value["credits"] }}</td>
-          <td>
+          <td class="table-center">{{ value["credits"] }}</td>
+          <td class="table-center">
             <div class="form-check">
               <input class="form-check-input position-static" type="checkbox" id="{{ key }}" aria-label="..." name="{{ key }}">
             </div>
           </td>
         </tr>
         {% endfor %}
-      </tbody>
 
+        <tr>
+          <td><label for="22530010">外国語自由科目(単位数を入力)</label></td>
+          <td></td>
+          <td class="table-center"><input class="form-control form-narrow" type="number" name="22530010_credits" value="0" required></td>
+        </tr>
+
+        <tr>
+          <td><label for="22610010">自由科目(単位数を入力)</label></td>
+          <td></td>
+          <td class="table-center"><input class="form-control form-narrow" type="number" name="22610010_credits" value="0" required></td>
+        </tr>
+
+      </tbody>
 
     </table>
     <button type="submit" class="btn btn-info btn-lg btn-block">計算</button>
