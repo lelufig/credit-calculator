@@ -7,13 +7,13 @@
     <div class="form-group">
       <label>1.学科を選択</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="department" id="exampleRadios1" value="gi">
+        <input class="form-check-input" type="radio" name="department" id="exampleRadios1" value="gi" onclick="disableUnselectableOption();">
         <label class="form-check-label" for="exampleRadios1">
           国際コミュニケーション学科
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="department" id="exampleRadios2" value="gp">
+        <input class="form-check-input" type="radio" name="department" id="exampleRadios2" value="gp" onclick="disableUnselectableOption();">
         <label class="form-check-label" for="exampleRadios2">
           総合政策学科
         </label>
@@ -63,5 +63,22 @@
   </form>
 </div>
 
+<script type="text/javascript">
+  function disableUnselectableOption() {
+    gi = document.getElementById("gi");
+    gp = document.getElementById("gp");
+    rm = document.getElementById("rm");
+    ic = document.getElementById("ic");
+    if (gi.checked) {
+      rm.setAttribute("disabled", "disabled");
+      ic.removeAttribute("disabled");
+    }
+    if (gp.checked) {
+      ic.setAttribute("disabled", "disabled");
+      rm.removeAttribute("disabled");
+    }
+    window.onload = disableUnselectableOption;
+  }
+</script>
 
 {% endblock %}

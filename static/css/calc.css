@@ -2,3 +2,11 @@ input[type=checkbox] {
   transform: scale(1.5);
   margin: auto;
 }
+
+body {
+  padding-top: 70px;
+}
+
+header {
+  font-family: 'Raleway', sans-serif;
+}
