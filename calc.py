@@ -1,13 +1,12 @@
 from flask import Flask, render_template, request, redirect
-from subject_list import ALL_COMMON_SUBJECTS, FACULTY_COMMON_SUBJECTS, GLOBAL_INTERNATIONAL_SUBJECTS, GLOBAL_POLICY_SUBJECTS, REQUIREMENTS
+from subject_list import ALL_COMMON_SUBJECTS, FACULTY_COMMON_SUBJECTS, GLOBAL_INTERNATIONAL_SUBJECTS, GLOBAL_POLICY_SUBJECTS, REQUIREMENTS, GLOBAL_INTERNATIONAL_SUBJECTS_CATEGORY, GLOBAL_POLICY_SUBJECTS_CATEGORY
 from collections import OrderedDict
 
 app = Flask(__name__)
-ALL_SUBJECTS = {}
-ALL_SUBJECTS.update(ALL_COMMON_SUBJECTS)
-ALL_SUBJECTS.update(FACULTY_COMMON_SUBJECTS)
-ALL_SUBJECTS.update(GLOBAL_INTERNATIONAL_SUBJECTS)
-ALL_SUBJECTS.update(GLOBAL_POLICY_SUBJECTS)
+FACULTY_SUBJECTS = {}
+FACULTY_SUBJECTS.update(FACULTY_COMMON_SUBJECTS)
+FACULTY_SUBJECTS.update(GLOBAL_INTERNATIONAL_SUBJECTS)
+FACULTY_SUBJECTS.update(GLOBAL_POLICY_SUBJECTS)
 
 
 def subjects_sum(subject_id_list, my_credits):
@@ -17,12 +16,12 @@ def subjects_sum(subject_id_list, my_credits):
     return credits_sum
 
 
-def detect_lack_subjects(requirements, my_credits):
-    lack_subjects = []
+def detect_lack_subject_ids(requirements, my_credits):
+    lack_subject_ids = []
     for subject_id in requirements:
         if my_credits[subject_id] == 0:
-            lack_subjects.append(ALL_SUBJECTS[subject_id]['name'])
-    return lack_subjects
+            lack_subject_ids.append(subject_id)
+    return lack_subject_ids
 
 
 @app.route('/')
@@ -71,17 +70,18 @@ def common(department, cource, chinese):
 
         common_sum = sum_credit['全学共通科目']
 
-        lack_subjects = dict()
-        lack_subjects['スタートアップ・セミナー'] = detect_lack_subjects(requirements['スタートアップ・セミナー'], my_credits)
-        lack_subjects['外国語'] = detect_lack_subjects(requirements['外国語'], my_credits)
-        lack_subjects['基礎科目'] = detect_lack_subjects(requirements['基礎科目'], my_credits)
-        lack_subjects['教養科目'] = detect_lack_subjects(requirements['教養科目'], my_credits)
-        lack_subjects['全学共通科目'] = detect_lack_subjects(my_credits.keys(), my_credits)
+        lack_subject_ids = dict()
+        lack_subject_ids['スタートアップ・セミナー'] = detect_lack_subject_ids(requirements['スタートアップ・セミナー'], my_credits)
+        lack_subject_ids['外国語'] = detect_lack_subject_ids(requirements['外国語'], my_credits)
+        lack_subject_ids['基礎科目'] = detect_lack_subject_ids(requirements['基礎科目'], my_credits)
+        lack_subject_ids['教養科目'] = detect_lack_subject_ids(requirements['教養科目'], my_credits)
+        lack_subject_ids['全学共通科目'] = detect_lack_subject_ids(my_credits.keys(), my_credits)
 
         return render_template('common_result.html',
+                               subjects=ALL_COMMON_SUBJECTS,
                                sum_credit=sum_credit,
                                lack_credit=lack_credit,
-                               lack_subjects=lack_subjects,
+                               lack_subject_ids=lack_subject_ids,
                                department=department,
                                cource=cource,
                                chinese=chinese,
@@ -127,7 +127,7 @@ def major(department, cource, chinese, common_sum):
         requirements = REQUIREMENTS['学科専門科目']
 
         sum_credit = OrderedDict()
-        sum_credit['学科専門科目'] = subjects_sum(my_credits.keys(), my_credits)
+        sum_credit['学科専門科目'] = subjects_sum(my_credits.keys(), my_credits) + int(result['22530010_credits']) + int(result['22610010_credits'])
         sum_credit['導入科目'] = subjects_sum(requirements['導入科目'], my_credits)
         sum_credit['学部教養科目（人文・社会）'] = subjects_sum(requirements['学部教養科目（人文・社会）'], my_credits)
         sum_credit['学部教養科目（汎用的技能）'] = subjects_sum(requirements['学部教養科目（汎用的技能）'], my_credits)
@@ -138,7 +138,7 @@ def major(department, cource, chinese, common_sum):
         if chinese == 'yes':
             sum_credit['中国語通年単位'] = subjects_sum(requirements['中国語通年単位'], my_credits)
 
-        sum_credit['外国語'] = subjects_sum(requirements['外国語'], my_credits)
+        sum_credit['外国語'] = subjects_sum(requirements['外国語'], my_credits) + int(result['22530010_credits'])
         sum_credit['♢印'] = subjects_sum(requirements['♢印'], my_credits)
 
         lack_credit = OrderedDict()
@@ -150,36 +150,36 @@ def major(department, cource, chinese, common_sum):
         lack_credit['実践演習科目'] = max(0, 8 - sum_credit['実践演習科目'])
         lack_credit['外国語必修'] = max(0, 8 - sum_credit['外国語必修'])
 
-        lack_subjects = dict()
-        lack_subjects['学科専門科目'] = detect_lack_subjects(my_credits.keys(), my_credits)
-        lack_subjects['導入科目'] = detect_lack_subjects(requirements['導入科目'], my_credits)
-        lack_subjects['学部教養科目（人文・社会）'] = detect_lack_subjects(requirements['学部教養科目（人文・社会）'], my_credits)
-        lack_subjects['学部教養科目（汎用的技能）'] = detect_lack_subjects(requirements['学部教養科目（汎用的技能）'], my_credits)
-        lack_subjects['学部教養演習'] = detect_lack_subjects(requirements['学部教養演習'], my_credits)
-        lack_subjects['実践演習科目'] = detect_lack_subjects(requirements['実践演習科目'], my_credits)
-        lack_subjects['外国語必修'] = detect_lack_subjects(requirements['外国語必修'], my_credits)
+        lack_subject_ids = dict()
+        lack_subject_ids['学科専門科目'] = detect_lack_subject_ids(my_credits.keys(), my_credits)
+        lack_subject_ids['導入科目'] = detect_lack_subject_ids(requirements['導入科目'], my_credits)
+        lack_subject_ids['学部教養科目（人文・社会）'] = detect_lack_subject_ids(requirements['学部教養科目（人文・社会）'], my_credits)
+        lack_subject_ids['学部教養科目（汎用的技能）'] = detect_lack_subject_ids(requirements['学部教養科目（汎用的技能）'], my_credits)
+        lack_subject_ids['学部教養演習'] = detect_lack_subject_ids(requirements['学部教養演習'], my_credits)
+        lack_subject_ids['実践演習科目'] = detect_lack_subject_ids(requirements['実践演習科目'], my_credits)
+        lack_subject_ids['外国語必修'] = detect_lack_subject_ids(requirements['外国語必修'], my_credits)
 
         if chinese == 'yes':
             lack_credit['中国語通年単位'] = max(0, 8 - sum_credit['中国語通年単位'])
-            lack_subjects['中国語通年単位'] = detect_lack_subjects(requirements['中国語通年単位'], my_credits)
+            lack_subject_ids['中国語通年単位'] = detect_lack_subject_ids(requirements['中国語通年単位'], my_credits)
 
         lack_credit['外国語'] = max(0, 20 - sum_credit['外国語'])
         lack_credit['♢印'] = max(0, 2 - sum_credit['♢印'])
 
-        lack_subjects['外国語'] = detect_lack_subjects(requirements['外国語'], my_credits)
-        lack_subjects['♢印'] = detect_lack_subjects(requirements['♢印'], my_credits)
+        lack_subject_ids['外国語'] = detect_lack_subject_ids(requirements['外国語'], my_credits)
+        lack_subject_ids['♢印'] = detect_lack_subject_ids(requirements['♢印'], my_credits)
 
         if department == 'gi':
             sum_credit['基礎科目'] = subjects_sum(requirements['基礎科目']['gi'], my_credits)
             sum_credit['展開科目'] = subjects_sum(requirements['展開科目']['gi'], my_credits)
-            lack_subjects['基礎科目'] = detect_lack_subjects(requirements['基礎科目']['gi'], my_credits)
-            lack_subjects['展開科目'] = detect_lack_subjects(requirements['展開科目']['gi'], my_credits)
+            lack_subject_ids['基礎科目'] = detect_lack_subject_ids(requirements['基礎科目']['gi'], my_credits)
+            lack_subject_ids['展開科目'] = detect_lack_subject_ids(requirements['展開科目']['gi'], my_credits)
 
         elif department == 'gp':
             sum_credit['基礎科目'] = subjects_sum(requirements['基礎科目']['gp'], my_credits)
             sum_credit['展開科目'] = subjects_sum(requirements['展開科目']['gp'], my_credits)
-            lack_subjects['基礎科目'] = detect_lack_subjects(requirements['基礎科目']['gp'], my_credits)
-            lack_subjects['展開科目'] = detect_lack_subjects(requirements['展開科目']['gp'], my_credits)
+            lack_subject_ids['基礎科目'] = detect_lack_subject_ids(requirements['基礎科目']['gp'], my_credits)
+            lack_subject_ids['展開科目'] = detect_lack_subject_ids(requirements['展開科目']['gp'], my_credits)
 
         else:
             raise "department error"
@@ -192,24 +192,24 @@ def major(department, cource, chinese, common_sum):
             sum_credit['コース展開科目'] = subjects_sum(requirements['コース展開科目']['ic'], my_credits)
             lack_credit['コース必修'] = max(0, 12 - sum_credit['コース必修'])
             lack_credit['コース展開科目'] = max(0, 12 - sum_credit['コース展開科目'])
-            lack_subjects['コース必修'] = detect_lack_subjects(requirements['コース必修']['ic'], my_credits)
-            lack_subjects['コース展開科目'] = detect_lack_subjects(requirements['コース展開科目']['ic'], my_credits)
+            lack_subject_ids['コース必修'] = detect_lack_subject_ids(requirements['コース必修']['ic'], my_credits)
+            lack_subject_ids['コース展開科目'] = detect_lack_subject_ids(requirements['コース展開科目']['ic'], my_credits)
 
         elif cource == 'rm':
             sum_credit['コース必修'] = subjects_sum(requirements['コース必修']['rm'], my_credits)
             sum_credit['コース展開科目'] = subjects_sum(requirements['コース展開科目']['rm'], my_credits)
             lack_credit['コース必修'] = max(0, 20 - sum_credit['コース必修'])
             lack_credit['コース展開科目'] = max(0, 12 - sum_credit['コース展開科目'])
-            lack_subjects['コース必修'] = detect_lack_subjects(requirements['コース必修']['rm'], my_credits)
-            lack_subjects['コース展開科目'] = detect_lack_subjects(requirements['コース展開科目']['rm'], my_credits)
+            lack_subject_ids['コース必修'] = detect_lack_subject_ids(requirements['コース必修']['rm'], my_credits)
+            lack_subject_ids['コース展開科目'] = detect_lack_subject_ids(requirements['コース展開科目']['rm'], my_credits)
 
         elif cource == 'bt':
             sum_credit['コース必修'] = subjects_sum(requirements['コース必修']['bt'], my_credits)
             sum_credit['コース展開科目'] = subjects_sum(requirements['コース展開科目']['bt'], my_credits)
             lack_credit['コース必修'] = max(0, 14 - sum_credit['コース必修'])
             lack_credit['コース展開科目'] = max(0, 12 - sum_credit['コース展開科目'])
-            lack_subjects['コース必修'] = detect_lack_subjects(requirements['コース必修']['bt'], my_credits)
-            lack_subjects['コース展開科目'] = detect_lack_subjects(requirements['コース展開科目']['bt'], my_credits)
+            lack_subject_ids['コース必修'] = detect_lack_subject_ids(requirements['コース必修']['bt'], my_credits)
+            lack_subject_ids['コース展開科目'] = detect_lack_subject_ids(requirements['コース展開科目']['bt'], my_credits)
 
         else:
             raise "cource error"
@@ -218,18 +218,19 @@ def major(department, cource, chinese, common_sum):
         lack_credit['卒業要件単位（124単位以上）'] = max(0, 124 - sum_credit['卒業要件単位（124単位以上）'])
 
         return render_template('faculty_common_result.html',
+                               subjects=FACULTY_SUBJECTS,
                                sum_credit=sum_credit,
                                lack_credit=lack_credit,
-                               lack_subjects=lack_subjects,
+                               lack_subject_ids=lack_subject_ids,
                                department=department,
                                cource=cource,
                                chinese=chinese)
 
     else:
         if department == "gi":
-            major_subjects = GLOBAL_INTERNATIONAL_SUBJECTS
+            major_subjects = GLOBAL_INTERNATIONAL_SUBJECTS_CATEGORY
         elif department == "gp":
-            major_subjects = GLOBAL_POLICY_SUBJECTS
+            major_subjects = GLOBAL_POLICY_SUBJECTS_CATEGORY
         else:
             raise
 

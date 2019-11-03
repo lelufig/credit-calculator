@@ -45,7 +45,7 @@
         <div class="card-header" id="heading{{ item }}">
           <h2 class="mb-0">
             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ item }}" aria-expanded="true" aria-controls="collapseOne">
-              {{ item }}の中からあと{{ lack_credit[item] }}単位必要です
+              {{ item }}{{ ' (' + cource.upper() + ') ' if 'コース' in item else '' }}の中からあと{{ lack_credit[item] }}単位必要です
             </button>
           </h2>
         </div>
@@ -54,8 +54,8 @@
           <div class="card-body">
             {% if item != '卒業要件単位（124単位以上）' %}
             <ul>
-              {% for lack_subject in lack_subjects[item] %}
-              <li>{{ lack_subject }}</li>
+              {% for lack_subject_id in lack_subject_ids[item] %}
+              <li>{{ subjects[lack_subject_id]['name'] }} - {{ subjects[lack_subject_id]['credits'] }}単位</li>
               {% endfor %}
             </ul>
             {% else %}

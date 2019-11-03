@@ -19,6 +19,58 @@
       </thead>
       <tbody>
         {% for key, value in subjects.items() %}
+
+        {% if key == 22010010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">導入科目</td>
+        </tr>
+        {% elif key == 22110010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">学部教養科目（人文・社会）</td>
+        </tr>
+        {% elif key == 22130010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">学部教養科目（汎用的技能）</td>
+        </tr>
+        {% elif key == 22140010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">学部教養演習</td>
+        </tr>
+        {% elif key == 22210010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">国際ビジネス・観光基礎</td>
+        </tr>
+        {% elif key == 22310010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">国際ビジネス・観光展開</td>
+        </tr>
+        {% elif key == 22330010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">コース共通展開</td>
+        </tr>
+        {% elif key == 22410010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">実践演習科目</td>
+        </tr>
+        {% elif key == 22510010 %}
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">外国語</td>
+        </tr>
+        {% endif %}
+
+        <tr>
+          <td><label for="{{ key }}">{{ value["name"] }}</label></td>
+          <td class="table-center">{{ value["credits"] }}</td>
+          <td class="table-center">
+            <div class="form-check">
+              <input class="form-check-input position-static" type="checkbox" id="{{ key }}" aria-label="..." name="{{ key }}">
+            </div>
+          </td>
+        </tr>
+
+        {% if key == 22140050 %}
+        <td class="table-center table-emphasis" colspan="3">{{ '国際コミュニケーション' if department == 'gi' else '地域マネジメント' }}基礎</td>
+        {% for key, value in major_subjects['basic'].items() %}
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
           <td class="table-center">{{ value["credits"] }}</td>
@@ -29,27 +81,9 @@
           </td>
         </tr>
         {% endfor %}
-      </tbody>
-
-
-    </table>
-
-    {% if department == 'gi' %}
-    <h2>国コミュ基礎科目・展開科目</h2>
-    {% else %}
-    <h2>総政基礎科目・展開科目</h2>
-    {% endif %}
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">授業名</th>
-          <th scope="col" class="table-center">単位数</th>
-          <th scope="col" class="table-center">履修予定・済</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        {% for key, value in major_subjects.items() %}
+        {% elif key == 22210110 %}
+        <td class="table-center table-emphasis" colspan="3">{{ '国際コミュニケーション' if department == 'gi' else '地域マネジメント' }}展開</td>
+        {% for key, value in major_subjects['advanced'].items() %}
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
           <td class="table-center">{{ value["credits"] }}</td>
@@ -60,13 +94,22 @@
           </td>
         </tr>
         {% endfor %}
+        {% endif %}
 
+        {% endfor %}
+
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">外国語自由科目</td>
+        </tr>
         <tr>
           <td><label for="22530010">外国語自由科目(単位数を入力)</label></td>
           <td></td>
           <td class="table-center"><input class="form-control form-narrow" type="number" name="22530010_credits" value="0" required></td>
         </tr>
 
+        <tr>
+          <td class="table-center table-emphasis" colspan="3">自由科目</td>
+        </tr>
         <tr>
           <td><label for="22610010">自由科目(単位数を入力)</label></td>
           <td></td>

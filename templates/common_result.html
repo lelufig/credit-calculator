@@ -51,8 +51,8 @@
         <div id="{{ item }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
           <div class="card-body">
             <ul>
-              {% for lack_subject in lack_subjects[item] %}
-              <li>{{ lack_subject }}</li>
+              {% for lack_subject_id in lack_subject_ids[item] %}
+              <li>{{ subjects[lack_subject_id]['name'] }} - {{ subjects[lack_subject_id]['credits'] }}単位</li>
               {% endfor %}
             </ul>
           </div>
