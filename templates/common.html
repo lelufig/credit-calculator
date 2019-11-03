@@ -17,11 +17,11 @@
       <tbody>
         {% for key, value in subjects.items() %}
         <tr>
-          <td>{{ value["name"] }}</td>
+          <td><label for="{{ key }}">{{ value["name"] }}</label></td>
           <td>{{ value["credits"] }}</td>
           <td>
             <div class="form-check">
-              <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" aria-label="..." name="{{ key }}">
+              <input class="form-check-input position-static" type="checkbox" id="{{ key }}" aria-label="..." name="{{ key }}">
             </div>
           </td>
         </tr>
