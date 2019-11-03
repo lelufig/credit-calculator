@@ -14,3 +14,7 @@ header {
 input.form-narrow {
   width: 60px;
 }
+
+.table-center {
+  text-align: center;
+}
