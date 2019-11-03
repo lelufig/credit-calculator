@@ -48,6 +48,7 @@
         </tr>
       </thead>
       <tbody>
+
         {% for key, value in major_subjects.items() %}
         <tr>
           <td><label for="{{ key }}">{{ value["name"] }}</label></td>
@@ -59,8 +60,20 @@
           </td>
         </tr>
         {% endfor %}
-      </tbody>
 
+        <tr>
+          <td><label for="22530010">外国語自由科目(単位数を入力)</label></td>
+          <td></td>
+          <td><input class="form-control form-narrow" type="number" name="22530010_credits" value="0" required></td>
+        </tr>
+
+        <tr>
+          <td><label for="22610010">自由科目(単位数を入力)</label></td>
+          <td></td>
+          <td><input class="form-control form-narrow" type="number" name="22610010_credits" value="0" required></td>
+        </tr>
+
+      </tbody>
 
     </table>
     <button type="submit" class="btn btn-info btn-lg btn-block">計算</button>
