@@ -3,52 +3,59 @@
 <div class="container">
   <h1></h1>
   <form class="" action="form" method="post">
-    <p>学科を選択</p>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="department" id="exampleRadios1" value="gi" onclick="disableUnselectableOption();" checked>
-      <label class="form-check-label" for="exampleRadios1">
-        国際コミュニケーション学科
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="department" id="exampleRadios2" value="gp" onclick="disableUnselectableOption();">
-      <label class="form-check-label" for="exampleRadios2">
-        総合政策学科
-      </label>
+
+    <div class="form-group">
+      <label>1.学科を選択</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="department" id="exampleRadios1" value="gi" onclick="disableUnselectableOption();">
+        <label class="form-check-label" for="exampleRadios1">
+          国際コミュニケーション学科
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="department" id="exampleRadios2" value="gp" onclick="disableUnselectableOption();">
+        <label class="form-check-label" for="exampleRadios2">
+          総合政策学科
+        </label>
+      </div>
     </div>
 
-    <p>コースを選択</p>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="cource" id="exampleRadios1" value="ic" checked>
-      <label class="form-check-label" for="exampleRadios1">
-        IC（国際コミュニケーションコース）
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="cource" id="exampleRadios2" value="rm">
-      <label class="form-check-label" for="exampleRadios2">
-        RM（地域マネジメントコース）
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="cource" id="exampleRadios3" value="bt" disabled>
-      <label class="form-check-label" for="exampleRadios3">
-        BT（国際観光・ビジネスコース）
-      </label>
+    <div class="form-group">
+      <label>2.コースを選択</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="cource" id="exampleRadios1" value="ic">
+        <label class="form-check-label" for="exampleRadios1">
+          IC（国際コミュニケーションコース）
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="cource" id="exampleRadios2" value="rm">
+        <label class="form-check-label" for="exampleRadios2">
+          RM（地域マネジメントコース）
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="cource" id="exampleRadios3" value="bt">
+        <label class="form-check-label" for="exampleRadios3">
+          BT（国際観光・ビジネスコース）
+        </label>
+      </div>
     </div>
 
-    <p>中国語を選択していますか？</p>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="chinese" id="exampleRadios1" value="yes" checked>
-      <label class="form-check-label" for="exampleRadios1">
-        はい
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="chinese" id="exampleRadios2" value="no">
-      <label class="form-check-label" for="exampleRadios2">
-        いいえ
-      </label>
+    <div class="form-group">
+      <label>3.中国語を選択していますか？</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="chinese" id="exampleRadios1" value="yes">
+        <label class="form-check-label" for="exampleRadios1">
+          はい
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="chinese" id="exampleRadios2" value="no">
+        <label class="form-check-label" for="exampleRadios2">
+          いいえ
+        </label>
+      </div>
     </div>
 
     <button type="submit" class="btn btn-info btn-lg btn-block">次へ</button>

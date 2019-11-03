@@ -2,69 +2,37 @@
 {% block content %}
 <div class="container">
   <div class="table-responsive">
-
-
+    <h1>全学年共通科目 計算結果</h1>
     <table class="table table-bordered">
+
       <thead>
         <tr>
           <th scope="col"></th>
           <th scope="col">取得単位数</th>
           <th scope="col">不足単位数</th>
-          <th scope="col">判定</th>
         </tr>
       </thead>
+
       <tbody>
+        {% for item in sum_credit.keys() %}
         <tr>
-          <th scope="row">必要単位数（22単位以上）</th>
-          <td>{{ sum_credit['単位数合計'] }}</td>
-          <td>{{ lack_credit['単位数合計'] }}</td>
-          {% if lack_credit['単位数合計'] == 0 %}
-          <td>合格</td>
+          <th scope="row">{{ item }}</th>
+          <td>{{ sum_credit[item] }}</td>
+          <td>{{ lack_credit[item] }}</td>
+
+          {% if lack_credit[item] == 0 %}
+          <div class="alert alert-primary" role="alert">
+            {{ item }}の単位数は合格です！
+          </div>
           {% else %}
-          <td>単位数が足りていません</td>
+          <div class="alert alert-danger" role="alert">
+            {{ item }}の単位が{{ lack_credit[item] }}単位足りていません。
+          </div>
           {% endif %}
         </tr>
-        <tr>
-          <th scope="row">スタートアップ・セミナー</th>
-          <td>{{ sum_credit['スタートアップ・セミナー'] }}</td>
-          <td>{{ lack_credit['スタートアップ・セミナー'] }}</td>
-          {% if lack_credit['スタートアップ・セミナー'] == 0 %}
-          <td>合格</td>
-          {% else %}
-          <td>スタートアップ・セミナーの単位が足りていません</td>
-          {% endif %}
-        </tr>
-        <tr>
-          <th scope="row">外国語</th>
-          <td>{{ sum_credit['外国語'] }}</td>
-          <td>{{ lack_credit['外国語'] }}</td>
-          {% if lack_credit['外国語'] == 0 %}
-          <td>合格</td>
-          {% else %}
-          <td>外国語の単位が足りていません</td>
-          {% endif %}
-        </tr>
-        <tr>
-          <th scope="row">基礎科目</th>
-          <td>{{ sum_credit['基礎科目'] }}</td>
-          <td>{{ lack_credit['基礎科目'] }}</td>
-          {% if lack_credit['基礎科目'] == 0 %}
-          <td>合格</td>
-          {% else %}
-          <td>基礎科目の単位が足りていません</td>
-          {% endif %}
-        </tr>
-        <tr>
-          <th scope="row">教養科目</th>
-          <td>{{ sum_credit['教養科目'] }}</td>
-          <td>{{ lack_credit['教養科目'] }}</td>
-          {% if lack_credit['教養科目'] == 0 %}
-          <td>合格</td>
-          {% else %}
-          <td>教養科目の単位が足りていません</td>
-          {% endif %}
-        </tr>
+        {% endfor %}
       </tbody>
+
     </table>
     <button onclick="location.href='/faculty/{{ department }}/{{ cource }}/{{ chinese }}/{{ common_sum }}'" class="btn btn-info btn-lg btn-block">学科専門科目へ</button>
   </div>
