@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_from_directory
 from subject_list import ALL_COMMON_SUBJECTS, FACULTY_COMMON_SUBJECTS, GLOBAL_INTERNATIONAL_SUBJECTS, GLOBAL_POLICY_SUBJECTS, REQUIREMENTS, GLOBAL_INTERNATIONAL_SUBJECTS_CATEGORY, GLOBAL_POLICY_SUBJECTS_CATEGORY
 from collections import OrderedDict
 from config import DEBUG
+import os
 
 app = Flask(__name__)
 FACULTY_SUBJECTS = {}
@@ -23,6 +24,11 @@ def detect_lack_subject_ids(requirements, my_credits):
         if my_credits[subject_id] == 0:
             lack_subject_ids.append(subject_id)
     return lack_subject_ids
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/')
