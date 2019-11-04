@@ -244,4 +244,4 @@ def major(department, cource, chinese, common_sum):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
