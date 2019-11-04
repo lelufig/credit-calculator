@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from subject_list import ALL_COMMON_SUBJECTS, FACULTY_COMMON_SUBJECTS, GLOBAL_INTERNATIONAL_SUBJECTS, GLOBAL_POLICY_SUBJECTS, REQUIREMENTS, GLOBAL_INTERNATIONAL_SUBJECTS_CATEGORY, GLOBAL_POLICY_SUBJECTS_CATEGORY
 from collections import OrderedDict
+from config import DEBUG
 
 app = Flask(__name__)
 FACULTY_SUBJECTS = {}
@@ -244,4 +245,4 @@ def major(department, cource, chinese, common_sum):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=DEBUG)
