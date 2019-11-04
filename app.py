@@ -27,7 +27,8 @@ def detect_lack_subject_ids(requirements, my_credits):
 
 @app.route('/')
 def index():
-    return render_template('top.html')
+    return render_template('top.html',
+                           title='Credit Calculator')
 
 
 @app.route('/form', methods=['GET', 'POST'])
@@ -39,7 +40,8 @@ def form():
         chinese = result['chinese']
         return redirect(f'/common/{department}/{cource}/{chinese}')
     else:
-        return render_template('form.html')
+        return render_template('form.html',
+                               title='学科・コース情報入力 - Credit Calculator')
 
 
 @app.route('/common/<department>/<cource>/<chinese>', methods=['GET', 'POST'])
@@ -79,6 +81,7 @@ def common(department, cource, chinese):
         lack_subject_ids['全学共通科目'] = detect_lack_subject_ids(my_credits.keys(), my_credits)
 
         return render_template('common_result.html',
+                               title='全学共通科目の計算結果 - Credit Calculator',
                                subjects=ALL_COMMON_SUBJECTS,
                                sum_credit=sum_credit,
                                lack_credit=lack_credit,
@@ -90,6 +93,7 @@ def common(department, cource, chinese):
 
     else:
         return render_template('common.html',
+                               title='全学共通科目の履修状況入力 - Credit Calculator',
                                subjects=ALL_COMMON_SUBJECTS,
                                department=department,
                                cource=cource,
@@ -219,6 +223,7 @@ def major(department, cource, chinese, common_sum):
         lack_credit['卒業要件単位（124単位以上）'] = max(0, 124 - sum_credit['卒業要件単位（124単位以上）'])
 
         return render_template('faculty_common_result.html',
+                               title='学科専門科目の計算結果 - Credit Calculator',
                                subjects=FACULTY_SUBJECTS,
                                sum_credit=sum_credit,
                                lack_credit=lack_credit,
@@ -236,6 +241,7 @@ def major(department, cource, chinese, common_sum):
             raise
 
         return render_template('faculty_common.html',
+                               title='学科専門科目の履修状況入力 - Credit Calculator',
                                subjects=FACULTY_COMMON_SUBJECTS,
                                major_subjects=major_subjects,
                                department=department,

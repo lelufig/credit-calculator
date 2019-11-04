@@ -55,3 +55,7 @@ input.form-narrow {
   font-size: 24px;
   font-weight: bold;
 }
+
+.btn-vertical-margin {
+  margin: 10px auto 10px;
+}
