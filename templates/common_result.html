@@ -1,67 +1,73 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-  <div class="table-responsive">
-    <h1>全学年共通科目 計算結果</h1>
-    <table class="table table-bordered">
+  <div class="row justify-content-lg-center">
+    <div class="col col-lg-9">
+      <div class="table-responsive">
 
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">取得単位数</th>
-          <th scope="col">不足単位数</th>
-        </tr>
-      </thead>
+        <h1>全学年共通科目 計算結果</h1>
 
-      <tbody>
-        {% for item in sum_credit.keys() %}
-        <tr>
-          <th scope="row">{{ item }}</th>
-          <td>{{ sum_credit[item] }}</td>
-          <td>{{ lack_credit[item] }}</td>
+        <table class="table table-bordered">
 
-          {% if lack_credit[item] == 0 %}
-          <div class="alert alert-primary" role="alert">
-            {{ item }}の単位数は合格です！
-          </div>
-          {% else %}
-          <div class="alert alert-danger" role="alert">
-            {{ item }}の単位が{{ lack_credit[item] }}単位足りていません。
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">取得単位数</th>
+              <th scope="col">不足単位数</th>
+            </tr>
+          </thead>
 
+          <tbody>
+            {% for item in sum_credit.keys() %}
+            <tr>
+              <th scope="row">{{ item }}</th>
+              <td>{{ sum_credit[item] }}</td>
+              <td>{{ lack_credit[item] }}</td>
+
+              {% if lack_credit[item] == 0 %}
+              <div class="alert alert-primary" role="alert">
+                {{ item }}の単位数は合格です！
+              </div>
+              {% else %}
+              <div class="alert alert-danger" role="alert">
+                {{ item }}の単位が{{ lack_credit[item] }}単位足りていません。
+
+              </div>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+
+        <div class="accordion" id="accordionExample">
+          {% for item in sum_credit.keys() %}
+          {% if lack_credit[item] != 0 %}
+          <div class="card">
+            <div class="card-header" id="heading{{ item }}">
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ item }}" aria-expanded="true" aria-controls="collapseOne">
+                  {{ item }}の中からあと{{ lack_credit[item] }}単位必要です
+                </button>
+              </h2>
+            </div>
+
+            <div id="{{ item }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <ul>
+                  {% for lack_subject_id in lack_subject_ids[item] %}
+                  <li>{{ subjects[lack_subject_id]['name'] }} - {{ subjects[lack_subject_id]['credits'] }}単位</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
           </div>
           {% endif %}
-        </tr>
-        {% endfor %}
-      </tbody>
-
-    </table>
-
-    <div class="accordion" id="accordionExample">
-      {% for item in sum_credit.keys() %}
-      {% if lack_credit[item] != 0 %}
-      <div class="card">
-        <div class="card-header" id="heading{{ item }}">
-          <h2 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ item }}" aria-expanded="true" aria-controls="collapseOne">
-              {{ item }}の中からあと{{ lack_credit[item] }}単位必要です
-            </button>
-          </h2>
+          {% endfor %}
         </div>
-
-        <div id="{{ item }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-          <div class="card-body">
-            <ul>
-              {% for lack_subject_id in lack_subject_ids[item] %}
-              <li>{{ subjects[lack_subject_id]['name'] }} - {{ subjects[lack_subject_id]['credits'] }}単位</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
+        <button onclick="location.href='/faculty/{{ department }}/{{ cource }}/{{ chinese }}/{{ common_sum }}'" class="btn btn-info btn-lg btn-block">学科専門科目へ</button>
       </div>
-      {% endif %}
-      {% endfor %}
     </div>
-    <button onclick="location.href='/faculty/{{ department }}/{{ cource }}/{{ chinese }}/{{ common_sum }}'" class="btn btn-info btn-lg btn-block">学科専門科目へ</button>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

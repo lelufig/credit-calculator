@@ -1,75 +1,81 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-  <div class="table-responsive">
-    <h1>学科専門科目 計算結果</h1>
-    <table class="table table-bordered">
+  <div class="row justify-content-lg-center">
+    <div class="col col-lg-9">
+      <div class="table-responsive">
 
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">取得単位数</th>
-          <th scope="col">不足単位数</th>
-        </tr>
-      </thead>
+        <h1>学科専門科目 計算結果</h1>
 
-      <tbody>
-        {% for item in sum_credit.keys() %}
-        <tr>
-          <th scope="row">{{ item }}
-            {% if 'コース' in item %}
-            ({{ cource.upper() }})
-            {% endif %}
-          </th>
-          <td>{{ sum_credit[item] }}</td>
-          <td>{{ lack_credit[item] }}</td>
-          {% if lack_credit[item] == 0 %}
-          <div class="alert alert-primary" role="alert">
-            {{ item }}の単位数は合格です！
-          </div>
-          {% else %}
-          <div class="alert alert-danger" role="alert">
-            {{ item }}の単位が{{ lack_credit[item] }}単位足りていません。
+        <table class="table table-bordered">
+
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">取得単位数</th>
+              <th scope="col">不足単位数</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for item in sum_credit.keys() %}
+            <tr>
+              <th scope="row">{{ item }}
+                {% if 'コース' in item %}
+                ({{ cource.upper() }})
+                {% endif %}
+              </th>
+              <td>{{ sum_credit[item] }}</td>
+              <td>{{ lack_credit[item] }}</td>
+              {% if lack_credit[item] == 0 %}
+              <div class="alert alert-primary" role="alert">
+                {{ item }}の単位数は合格です！
+              </div>
+              {% else %}
+              <div class="alert alert-danger" role="alert">
+                {{ item }}の単位が{{ lack_credit[item] }}単位足りていません。
+              </div>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+
+        <div class="accordion" id="accordionExample">
+          {% for item in sum_credit.keys() %}
+          {% if lack_credit[item] != 0 %}
+          <div class="card">
+            <div class="card-header" id="heading{{ item }}">
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ item }}" aria-expanded="true" aria-controls="collapseOne">
+                  {{ item }}{{ ' (' + cource.upper() + ') ' if 'コース' in item else '' }}の中からあと{{ lack_credit[item] }}単位必要です
+                </button>
+              </h2>
+            </div>
+
+            <div id="{{ item }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                {% if item != '卒業要件単位（124単位以上）' %}
+                <ul>
+                  {% for lack_subject_id in lack_subject_ids[item] %}
+                  <li>{{ subjects[lack_subject_id]['name'] }} - {{ subjects[lack_subject_id]['credits'] }}単位</li>
+                  {% endfor %}
+                </ul>
+                {% else %}
+                <ul>
+                  <li>すべての授業からあと{{ lack_credit[item] }}単位です</li>
+                </ul>
+                {% endif %}
+              </div>
+            </div>
           </div>
           {% endif %}
-        </tr>
-        {% endfor %}
-      </tbody>
-
-    </table>
-
-    <div class="accordion" id="accordionExample">
-      {% for item in sum_credit.keys() %}
-      {% if lack_credit[item] != 0 %}
-      <div class="card">
-        <div class="card-header" id="heading{{ item }}">
-          <h2 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ item }}" aria-expanded="true" aria-controls="collapseOne">
-              {{ item }}{{ ' (' + cource.upper() + ') ' if 'コース' in item else '' }}の中からあと{{ lack_credit[item] }}単位必要です
-            </button>
-          </h2>
+          {% endfor %}
         </div>
 
-        <div id="{{ item }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-          <div class="card-body">
-            {% if item != '卒業要件単位（124単位以上）' %}
-            <ul>
-              {% for lack_subject_id in lack_subject_ids[item] %}
-              <li>{{ subjects[lack_subject_id]['name'] }} - {{ subjects[lack_subject_id]['credits'] }}単位</li>
-              {% endfor %}
-            </ul>
-            {% else %}
-            <ul>
-              <li>すべての授業からあと{{ lack_credit[item] }}単位です</li>
-            </ul>
-            {% endif %}
-          </div>
-        </div>
       </div>
-      {% endif %}
-      {% endfor %}
     </div>
-
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

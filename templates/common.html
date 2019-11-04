@@ -1,65 +1,69 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-  <h1>全学年共通科目</h1>
+  <div class="row justify-content-lg-center">
+    <div class="col col-lg-8">
+      <h1>全学年共通科目</h1>
 
-  <form class="" action="/common/{{ department }}/{{ cource }}/{{ chinese }}" method="post">
+      <form class="" action="/common/{{ department }}/{{ cource }}/{{ chinese }}" method="post">
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">授業名</th>
-          <th scope="col" class="table-center">単位数</th>
-          <th scope="col" class="table-center">履修予定・済</th>
-        </tr>
-      </thead>
-      <tbody>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">授業名</th>
+              <th scope="col" class="table-center">単位数</th>
+              <th scope="col" class="table-center">履修予定・済</th>
+            </tr>
+          </thead>
+          <tbody>
 
-        {% for key, value in subjects.items() %}
+            {% for key, value in subjects.items() %}
 
-        {% if key == 10010010 %}
-        <tr>
-          <td class="table-center table-emphasis" colspan="3">スタートアップ・セミナー</td>
-        </tr>
-        {% elif key == 10110010 %}
-        <tr>
-          <td class="table-center table-emphasis" colspan="3">外国語</td>
-        </tr>
-        {% elif key == 10120010 %}
-        <tr>
-          <td class="table-center table-emphasis" colspan="3">基礎科目</td>
-        </tr>
-        {% elif key == 10210010 %}
-        <tr>
-          <td class="table-center table-emphasis" colspan="3">教養科目</td>
-        </tr>
-        {% endif %}
+            {% if key == 10010010 %}
+            <tr>
+              <td class="table-center table-emphasis" colspan="3">スタートアップ・セミナー</td>
+            </tr>
+            {% elif key == 10110010 %}
+            <tr>
+              <td class="table-center table-emphasis" colspan="3">外国語</td>
+            </tr>
+            {% elif key == 10120010 %}
+            <tr>
+              <td class="table-center table-emphasis" colspan="3">基礎科目</td>
+            </tr>
+            {% elif key == 10210010 %}
+            <tr>
+              <td class="table-center table-emphasis" colspan="3">教養科目</td>
+            </tr>
+            {% endif %}
 
-        <tr>
-          <td><label for="{{ key }}">{{ value["name"] }}</label></td>
-          <td class="table-center">{{ value["credits"] }}</td>
-          <td class="table-center">
-            <div class="form-check">
-              <input class="form-check-input position-static" type="checkbox" id="{{ key }}" aria-label="..." name="{{ key }}">
-            </div>
-          </td>
-        </tr>
-        {% endfor %}
+            <tr>
+              <td><label for="{{ key }}">{{ value["name"] }}</label></td>
+              <td class="table-center">{{ value["credits"] }}</td>
+              <td class="table-center">
+                <div class="form-check">
+                  <input class="form-check-input position-static" type="checkbox" id="{{ key }}" aria-label="..." name="{{ key }}">
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
 
-        <tr>
-          <td class="table-center table-emphasis" colspan="3">自由科目</td>
-        </tr>
-        <tr>
-          <td><label for="10310010">自由科目(単位数を入力)</label></td>
-          <td></td>
-          <td class="table-center"><input class="form-control form-narrow" type="number" name="10310010_credits" value="0" required></td>
-        </tr>
+            <tr>
+              <td class="table-center table-emphasis" colspan="3">自由科目</td>
+            </tr>
+            <tr>
+              <td><label for="10310010">自由科目(単位数を入力)</label></td>
+              <td></td>
+              <td class="table-center"><input class="form-control form-narrow" type="number" name="10310010_credits" value="0" required></td>
+            </tr>
 
-      </tbody>
-    </table>
+          </tbody>
+        </table>
 
-    <button type="submit" class="btn btn-info btn-lg btn-block">計算</button>
+        <button type="submit" class="btn btn-info btn-lg btn-block">計算</button>
+      </form>
 
-  </form>
+    </div>
+  </div>
 </div>
 {% endblock %}
