@@ -56,6 +56,10 @@ input.form-narrow {
   font-weight: bold;
 }
 
-.btn-vertical-margin {
+.btn-vertical-margin+.btn-vertical-margin {
   margin: 10px auto 10px;
+}
+
+.card .card-header .mb-0 .btn {
+  text-align: left;
 }
