@@ -174,7 +174,7 @@ def major(department, cource, chinese, common_sum):
             lack_credit['中国語通年単位'] = max(0, 8 - sum_credit['中国語通年単位'])
             lack_subject_ids['中国語通年単位'] = detect_lack_subject_ids(requirements['中国語通年単位'], my_credits)
 
-        lack_credit['外国語'] = max(0, 20 - sum_credit['外国語'])
+        lack_credit['外国語'] = max(0, 12 - sum_credit['外国語'])
         lack_credit['♢印'] = max(0, 2 - sum_credit['♢印'])
 
         lack_subject_ids['外国語'] = detect_lack_subject_ids(requirements['外国語'], my_credits)
