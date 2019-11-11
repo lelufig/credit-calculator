@@ -26,7 +26,11 @@
             </tr>
             {% elif key == 22110010 %}
             <tr>
-              <td class="table-center table-emphasis" colspan="3">学部教養科目（人文・社会）</td>
+              <td class="table-center table-emphasis" colspan="3">学部教養科目（人文）</td>
+            </tr>
+            {% elif key == 22120010 %}
+            <tr>
+              <td class="table-center table-emphasis" colspan="3">学部教養科目（社会）</td>
             </tr>
             {% elif key == 22130010 %}
             <tr>
@@ -54,12 +58,21 @@
             </tr>
             {% elif key == 22510010 %}
             <tr>
-              <td class="table-center table-emphasis" colspan="3">外国語</td>
+              <td class="table-center table-emphasis" colspan="3">英語</td>
+            </tr>
+            {% elif key == 22520010 %}
+            <tr>
+              <td class="table-center table-emphasis" colspan="3">中国語</td>
             </tr>
             {% endif %}
 
             <tr>
-              <td><label for="{{ key }}">{{ value["name"] }}</label></td>
+              <td><label for="{{ key }}">{{ value["name"] }}</label>
+              {% if value['required'] == True %}
+              (必修)
+              </td>
+              {% endif %}
+
               <td class="table-center">{{ value["credits"] }}</td>
               <td class="table-center">
                 <div class="form-check">
