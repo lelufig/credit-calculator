@@ -259,5 +259,11 @@ def major(department, cource, chinese, common_sum):
                                common_sum=common_sum)
 
 
+@app.route('/thanks')
+def thanks():
+    return render_template('thanks.html',
+                           title='ありがとうございました - Credit Calculator')
+
+
 if __name__ == '__main__':
     app.run(debug=DEBUG)
