@@ -13,6 +13,20 @@ body {
   background-color: #fff;
 }
 
+.bird-icon {
+  fill: #ffc107
+}
+
+.bird-icon-size {
+  width: 150px;
+  height: 150px;
+}
+
+.bird-icon-center {
+  text-align: center;
+  margin: 50px auto;
+}
+
 header {
   font-family: 'Raleway', sans-serif;
   background-color: #ffb6c1;
@@ -23,24 +37,11 @@ header {
   margin-bottom: 16px;
 }
 
-.icon-color{
-  color: #ffc107
-}
-
-.top-p {
+.top-p, .thanks-p {
   text-align: left;
   font-size: 18px;
   font-family: 'arial narrow';
   margin: 20px;
-}
-
-.icon {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 50px auto;
-  font-size: 150px;
 }
 
 input.form-narrow {
