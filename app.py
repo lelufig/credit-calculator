@@ -252,6 +252,7 @@ def major(department, cource, chinese, common_sum):
         return render_template('faculty_common.html',
                                title='学科専門科目の履修状況入力 - Credit Calculator',
                                subjects=FACULTY_COMMON_SUBJECTS,
+                               requirements=REQUIREMENTS,
                                major_subjects=major_subjects,
                                department=department,
                                cource=cource,

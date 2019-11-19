@@ -67,10 +67,14 @@
             {% endif %}
 
             <tr>
-              <td><label for="{{ key }}">{{ value["name"] }}</label>
-              {% if value['required'] == True %}
-              (必修)
-              {% endif %}
+              <td>
+                <label for="{{ key }}">{{ value["name"] }}
+                  {% if value['required'] == True %}
+                  (必修)
+                  {% elif key in requirements['学科専門科目']['コース必修'][cource] %}
+                  ⭐{{ cource.upper() }}必修
+                  {% endif %}
+                </label>
               </td>
               <td class="table-center">{{ value["credits"] }}</td>
               <td class="table-center">
@@ -84,7 +88,13 @@
             <td class="table-center table-emphasis" colspan="3">{{ '国際コミュニケーション' if department == 'gi' else '地域マネジメント' }}基礎</td>
             {% for key, value in major_subjects['basic'].items() %}
             <tr>
-              <td><label for="{{ key }}">{{ value["name"] }}</label></td>
+              <td>
+                <label for="{{ key }}">{{ value["name"] }}
+                  {% if key in requirements['学科専門科目']['コース必修'][cource] %}
+                  ⭐{{ cource.upper() }}必修
+                  {% endif %}
+                </label>
+              </td>
               <td class="table-center">{{ value["credits"] }}</td>
               <td class="table-center">
                 <div class="form-check">
@@ -97,7 +107,13 @@
             <td class="table-center table-emphasis" colspan="3">{{ '国際コミュニケーション' if department == 'gi' else '地域マネジメント' }}展開</td>
             {% for key, value in major_subjects['advanced'].items() %}
             <tr>
-              <td><label for="{{ key }}">{{ value["name"] }}</label></td>
+              <td>
+                <label for="{{ key }}">{{ value["name"] }}
+                  {% if key in requirements['学科専門科目']['コース必修'][cource] %}
+                  ⭐{{ cource.upper() }}必修
+                  {% endif %}
+                </label>
+              </td>
               <td class="table-center">{{ value["credits"] }}</td>
               <td class="table-center">
                 <div class="form-check">
