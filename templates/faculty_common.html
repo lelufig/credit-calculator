@@ -5,7 +5,7 @@
     <div class="col col-lg-9">
 
       <h1>学科専門科目</h1>
-      <h2>履修した科目にチェックを入れてください。</h2>
+      <p>履修した科目にチェックを入れてください。</p>
 
       <form class="" action="/faculty/{{ department }}/{{ cource }}/{{ chinese }}/{{ common_sum }}" method="post">
 
@@ -104,7 +104,7 @@
               </td>
             </tr>
             {% endfor %}
-            {% elif key == 22210110 %}
+            {% elif key == 22210010 %}
             <td class="table-center table-emphasis" colspan="3">{{ '国際コミュニケーション' if department == 'gi' else '地域マネジメント' }}展開</td>
             {% for key, value in major_subjects['advanced'].items() %}
             <tr>

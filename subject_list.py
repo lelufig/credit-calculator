@@ -88,6 +88,7 @@ ALL_COMMON_SUBJECTS = {
 }
 
 FACULTY_COMMON_SUBJECTS = {
+    #導入科目
     22010010: {"name": "国際政策入門(地域マネジメント)", "credits": 2, "required": True},
     22010020: {"name": "国際政策入門(国際ビジネス観光)", "credits": 2, "required": True},
     22010030: {"name": "国際政策入門(国際コミュニケーション)", "credits": 2, "required": True},
@@ -95,6 +96,7 @@ FACULTY_COMMON_SUBJECTS = {
     22010050: {"name": "基礎演習Ⅱ", "credits": 1, "required": True},
     22010060: {"name": "地域実践入門Ⅰ", "credits": 1, "required": False},
     22010070: {"name": "地域実践入門Ⅱ", "credits": 1, "required": False},
+    #学部教養科目(人文)
     22110010: {"name": "日本の歴史Ⅰ", "credits": 2, "required": False},
     22110020: {"name": "日本の歴史Ⅱ", "credits": 2, "required": False},
     22110030: {"name": "アジアの歴史Ⅰ", "credits": 2, "required": False},
@@ -112,16 +114,17 @@ FACULTY_COMMON_SUBJECTS = {
     22110100: {"name": "日本文学概論(文学史を含む)", "credits": 2, "required": False},
     22110120: {"name": "国語科書写", "credits": 2, "required": False},
     22110170: {"name": "中国文学", "credits": 2, "required": False},
+    #学部教養科目(社会)
     22120130: {"name": "現代日本社会論", "credits": 2, "required": False},
     22120040: {"name": "国際関係論", "credits": 2, "required": True},
     22120010: {"name": "国際法", "credits": 2, "required": False},
     22120060: {"name": "平和と安全保障", "credits": 2, "required": False},
     22120070: {"name": "マクロ経済学", "credits": 2, "required": False},
     22120080: {"name": "ミクロ経済学", "credits": 2, "required": False},
-    22120020: {"name": "民法Ⅰ", "credits": 2, "required": False},
     22120100: {"name": "簿記論", "credits": 2, "required": False},
     22120110: {"name": "簿記演習", "credits": 1, "required": False},
     22120090: {"name": "財政学", "credits": 2, "required": False},
+    22120020: {"name": "民法Ⅰ", "credits": 2, "required": False},
     22120050: {"name": "欧米の国際関係", "credits": 2, "required": False},
     22120150: {"name": "情報社会論", "credits": 2, "required": False},
     22120160: {"name": "韓国学概論", "credits": 2, "required": False},
@@ -131,6 +134,7 @@ FACULTY_COMMON_SUBJECTS = {
     22120140: {"name": "共生社会論", "credits": 2, "required": False},
     22120030: {"name": "刑法", "credits": 2, "required": False},
     22120120: {"name": "社会学概論(社会理論と社会システム)", "credits": 2, "required": False},
+    #汎用的技能
     22130010: {"name": "情報ネットワーク論", "credits": 2, "required": False},
     22130020: {"name": "社会調査法", "credits": 2, "required": False},
     22130060: {"name": "地域プロジェクト論", "credits": 2, "required": False},
@@ -139,11 +143,13 @@ FACULTY_COMMON_SUBJECTS = {
     22130030: {"name": "知の技法", "credits": 2, "required": False},
     22130070: {"name": "心理学", "credits": 2, "required": False},
     22130080: {"name": "倫理学", "credits": 2, "required": False},
+    #学部教養演習
     22140010: {"name": "地域実践演習Ⅰ", "credits": 1, "required": False},
     22140020: {"name": "地域実践演習Ⅱ", "credits": 1, "required": False},
     22140030: {"name": "アカデミックスキル演習Ⅰ", "credits": 1, "required": False},
     22140040: {"name": "アカデミックスキル演習Ⅱ", "credits": 1, "required": False},
     22140050: {"name": "海外インターンシップ", "credits": 1, "required": False},
+    #基礎科目(BT基礎)
     22210040: {"name": "国際政治論", "credits": 2, "required": False},
     22210080: {"name": "経営学", "credits": 2, "required": False},
     22210090: {"name": "会計学", "credits": 2, "required": False},
@@ -155,6 +161,7 @@ FACULTY_COMMON_SUBJECTS = {
     22210110: {"name": "観光まちづくり概論", "credits": 2, "required": False},
     22210070: {"name": "日本経済論", "credits": 2, "required": False},
     22210010: {"name": "労働法", "credits": 2, "required": False},
+    #基礎科目(BT展開)
     22310080: {"name": "国際経済論Ⅰ(アジア)", "credits": 2, "required": False},
     22310090: {"name": "国際経済論Ⅱ(欧米)", "credits": 2, "required": False},
     22310100: {"name": "貿易論", "credits": 2, "required": False},
@@ -176,6 +183,7 @@ FACULTY_COMMON_SUBJECTS = {
     22310200: {"name": "国際観光まちづくり論", "credits": 2, "required": False},
     22310210: {"name": "観光ビジネス論", "credits": 2, "required": False},
     22310150: {"name": "経営組織論", "credits": 2, "required": False},
+    #コース共通科目
     22330070: {"name": "キャリアデザイン実践(国際政策キャリア形成)", "credits": 2, "required": False},
     22330060: {"name": "多文化教育論", "credits": 2, "required": False},
     22330040: {"name": "言語学概論", "credits": 2, "required": False},
@@ -183,6 +191,7 @@ FACULTY_COMMON_SUBJECTS = {
     22330020: {"name": "日本語の構造(音韻・文学)", "credits": 2, "required": False},
     22330030: {"name": "日本語教育特講(外国語児童生徒等)", "credits": 2, "required": False},
     22330050: {"name": "社会言語学", "credits": 2, "required": False},
+    #実践演習科目
     22410010: {"name": "国際理解演習(韓国)", "credits": 4, "required": False},
     22410020: {"name": "国際理解演習(米国)", "credits": 4, "required": False},
     22410030: {"name": "国際理解演習(英国)", "credits": 4, "required": False},
@@ -193,6 +202,7 @@ FACULTY_COMMON_SUBJECTS = {
     22410080: {"name": "国際政策課題演習Ⅱ", "credits": 2, "required": True},
     22410090: {"name": "国際政策演習Ⅰ(卒業研究)", "credits": 2, "required": True},
     22410100: {"name": "国際政策演習Ⅱ(卒業研究)", "credits": 2, "required": True},
+    #英語
     22510320: {"name": "英文法１", "credits": 1, "required": False},
     22510330: {"name": "英文法２", "credits": 1, "required": False},
     22510360: {"name": "時事英語１", "credits": 1, "required": False},
@@ -233,6 +243,7 @@ FACULTY_COMMON_SUBJECTS = {
     22510150: {"name": "英語Listening３", "credits": 1, "required": False},
     22510160: {"name": "英語Listening４", "credits": 1, "required": False},
     22510400: {"name": "留学英語", "credits": 1, "required": False},
+    #中国語
     22520090: {"name": "中国語現地演習", "credits": 2, "required": False},
     22520120: {"name": "中国語翻訳１", "credits": 1, "required": False},
     22520130: {"name": "中国語翻訳２", "credits": 1, "required": False},
@@ -263,6 +274,7 @@ FACULTY_COMMON_SUBJECTS = {
 }
 
 GLOBAL_INTERNATIONAL_SUBJECTS = {
+    #IC基礎
     22220020: {"name": "地域研究論", "credits": 2, "required": False},
     22220060: {"name": "日本文化論", "credits": 2, "required": False},
     22220040: {"name": "ヨーロッパの社会と文化", "credits": 2, "required": False},
@@ -270,20 +282,22 @@ GLOBAL_INTERNATIONAL_SUBJECTS = {
     22220030: {"name": "西洋思想史", "credits": 2, "required": False},
     22220010: {"name": "マスメディア論", "credits": 2, "required": False},
     22220050: {"name": "東アジアの文化と思想", "credits": 2, "required": False},
+    #IC展開
     22320020: {"name": "中国の社会経済", "credits": 2, "required": False},
     22320010: {"name": "日中関係の歴史", "credits": 2, "required": False},
     22320110: {"name": "コンピュータと人間科学", "credits": 2, "required": False},
     22320100: {"name": "演劇とコミュニケーション", "credits": 2, "required": False},
     22320060: {"name": "日本語教育評価法", "credits": 2, "required": False},
     22320070: {"name": "日本語教育実習", "credits": 2, "required": False},
+    22320080: {"name": "日本語教育実践", "credits": 1, "required": False},
     22320040: {"name": "日本語の表現Ⅱ(コミュニケーション)", "credits": 2, "required": False},
     22320030: {"name": "近現代日本の文学", "credits": 2, "required": False},
     22320090: {"name": "日本語文献購読(古典)", "credits": 1, "required": False},
     22320050: {"name": "日本語の歴史", "credits": 2, "required": False},
-    22320080: {"name": "日本語教育実践", "credits": 1, "required": False},
 }
 
 GLOBAL_POLICY_SUBJECTS = {
+    #RM基礎
     21210060: {"name": "地域政策論", "credits": 2, "required": False},
     21210020: {"name": "政治学Ⅰ", "credits": 2, "required": False},
     21210070: {"name": "地域経済論", "credits": 2, "required": False},
@@ -293,8 +307,8 @@ GLOBAL_POLICY_SUBJECTS = {
     21210050: {"name": "公共政策論", "credits": 2, "required": False},
     21210030: {"name": "公共人材論", "credits": 2, "required": False},
     21210010: {"name": "行政法Ⅰ", "credits": 2, "required": False},
+    #RM展開
     21310080: {"name": "山梨の政策課題", "credits": 2, "required": False},
-    21310130: {"name": "福祉行財政論(福祉行政法と福祉計画)", "credits": 2, "required": False},
     21310030: {"name": "政治学Ⅱ", "credits": 2, "required": False},
     21310070: {"name": "地域振興論", "credits": 2, "required": False},
     21310020: {"name": "行政法Ⅱ", "credits": 2, "required": False},
@@ -302,6 +316,7 @@ GLOBAL_POLICY_SUBJECTS = {
     21310050: {"name": "地方財政論", "credits": 2, "required": False},
     21310100: {"name": "環境社会学", "credits": 2, "required": False},
     21310060: {"name": "地域企業実践論", "credits": 2, "required": False},
+    21310130: {"name": "福祉行財政論(福祉行政と福祉計画)", "credits": 2, "required": False},
     21310120: {"name": "地域観光情報論", "credits": 2, "required": False},
     21310140: {"name": "社会保障論", "credits": 2, "required": False},
     21310150: {"name": "地域福祉論", "credits": 2, "required": False},
@@ -390,7 +405,6 @@ GLOBAL_POLICY_SUBJECTS_CATEGORY = {
     },
     'advanced': {
         21310080: {"name": "山梨の政策課題", "credits": 2},
-        21310130: {"name": "福祉行財政論(福祉行政法と福祉計画)", "credits": 2},
         21310030: {"name": "政治学Ⅱ", "credits": 2},
         21310070: {"name": "地域振興論", "credits": 2},
         21310020: {"name": "行政法Ⅱ", "credits": 2},
@@ -398,6 +412,7 @@ GLOBAL_POLICY_SUBJECTS_CATEGORY = {
         21310050: {"name": "地方財政論", "credits": 2},
         21310100: {"name": "環境社会学", "credits": 2},
         21310060: {"name": "地域企業実践論", "credits": 2},
+        21310130: {"name": "福祉行財政論(福祉行政法と福祉計画)", "credits": 2},
         21310120: {"name": "地域観光情報論", "credits": 2},
         21310140: {"name": "社会保障論", "credits": 2},
         21310150: {"name": "地域福祉論", "credits": 2},
