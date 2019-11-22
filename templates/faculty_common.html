@@ -5,7 +5,7 @@
     <div class="col col-lg-9">
 
       <h1>学科専門科目</h1>
-      <p>履修した科目にチェックを入れてください。</p>
+      <p>履修した科目にチェックを入れてください。(🔸は2単位以上必要)</p>
 
       <form class="" action="/faculty/{{ department }}/{{ cource }}/{{ chinese }}/{{ common_sum }}" method="post">
 
@@ -69,7 +69,11 @@
 
             <tr>
               <td>
-                <label for="{{ key }}">{{ value["name"] }}
+                <label for="{{ key }}">
+                  {% if key in requirements['学科専門科目']['♢印'] %}
+                  🔸
+                  {% endif %}
+                  {{ value["name"] }}
                   {% if value['required'] == True %}
                   (必修)
                   {% elif key in requirements['学科専門科目']['コース必修'][cource] %}
