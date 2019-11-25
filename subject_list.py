@@ -382,7 +382,7 @@ GLOBAL_INTERNATIONAL_SUBJECTS_CATEGORY = {
         22320110: {"name": "コンピュータと人間科学", "credits": 2},
         22320100: {"name": "演劇とコミュニケーション", "credits": 2},
         22320060: {"name": "日本語教育評価法", "credits": 2},
-        22320070: {"name": "日本語教育実習", "credits": 2},
+        22320070: {"name": "日本語教育実習", "credits": 1},
         22320080: {"name": "日本語教育実践", "credits": 1},
         22320040: {"name": "日本語の表現Ⅱ(コミュニケーション)", "credits": 2},
         22320030: {"name": "近現代日本の文学", "credits": 2},
