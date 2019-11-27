@@ -41,17 +41,18 @@ def index():
 def form():
     if request.method == 'POST':
         result = request.form
+        grade = result['grade']
         department = result['department']
         cource = result['cource']
         chinese = result['chinese']
-        return redirect(f'/common/{department}/{cource}/{chinese}')
+        return redirect(f'/common/{grade}/{department}/{cource}/{chinese}')
     else:
         return render_template('form.html',
                                title='学科・コース情報入力 - Credit Calculator')
 
 
-@app.route('/common/<department>/<cource>/<chinese>', methods=['GET', 'POST'])
-def common(department, cource, chinese):
+@app.route('/common/<grade>/<department>/<cource>/<chinese>', methods=['GET', 'POST'])
+def common(grade, department, cource, chinese):
     if request.method == 'POST':
         result = request.form
         my_credits = dict()
@@ -92,6 +93,7 @@ def common(department, cource, chinese):
                                sum_credit=sum_credit,
                                lack_credit=lack_credit,
                                lack_subject_ids=lack_subject_ids,
+                               grade=grade,
                                department=department,
                                cource=cource,
                                chinese=chinese,
@@ -101,6 +103,7 @@ def common(department, cource, chinese):
         return render_template('common.html',
                                title='全学共通科目の履修状況入力 - Credit Calculator',
                                subjects=ALL_COMMON_SUBJECTS,
+                               grade=grade,
                                department=department,
                                cource=cource,
                                chinese=chinese)
@@ -111,9 +114,11 @@ def faculty_common():
     return render_template('faculty_common.html', subjects=FACULTY_COMMON_SUBJECTS)
 
 
-@app.route('/faculty/<department>/<cource>/<chinese>/<int:common_sum>', methods=['GET', 'POST'])
-def major(department, cource, chinese, common_sum):
+@app.route('/faculty/<grade>/<department>/<cource>/<chinese>/<int:common_sum>', methods=['GET', 'POST'])
+def major(grade, department, cource, chinese, common_sum):
     if request.method == 'POST':
+        if grade == 'four':
+            FACULTY_SUBJECTS[22320070]['credits'] = 2
         result = request.form
         my_credits = dict()
         for key, value in FACULTY_COMMON_SUBJECTS.items():
@@ -237,6 +242,7 @@ def major(department, cource, chinese, common_sum):
                                sum_credit=sum_credit,
                                lack_credit=lack_credit,
                                lack_subject_ids=lack_subject_ids,
+                               grade=grade,
                                department=department,
                                cource=cource,
                                chinese=chinese)
@@ -244,6 +250,8 @@ def major(department, cource, chinese, common_sum):
     else:
         if department == "gi":
             major_subjects = GLOBAL_INTERNATIONAL_SUBJECTS_CATEGORY
+            if grade == 'four':
+                major_subjects['advanced'][22320070]['credits'] = 2
         elif department == "gp":
             major_subjects = GLOBAL_POLICY_SUBJECTS_CATEGORY
         else:
@@ -254,6 +262,7 @@ def major(department, cource, chinese, common_sum):
                                subjects=FACULTY_COMMON_SUBJECTS,
                                requirements=REQUIREMENTS,
                                major_subjects=major_subjects,
+                               grade=grade,
                                department=department,
                                cource=cource,
                                chinese=chinese,
