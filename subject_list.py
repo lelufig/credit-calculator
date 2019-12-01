@@ -54,7 +54,7 @@ ALL_COMMON_SUBJECTS = {
     10220060: {"name": "日本国憲法", "credits": 2, "required": False},
     10230010: {"name": "宇宙の科学", "credits": 2, "required": False},
     10230020: {"name": "生物の科学", "credits": 2, "required": False},
-    10230030: {"name": "生活と科学", "credits": 2, "required": False},
+    10230030: {"name": "生活と化学", "credits": 2, "required": False},
     10230040: {"name": "モノづくりデザインの基礎", "credits": 2, "required": False},
     10240010: {"name": "環境論", "credits": 2, "required": False},
     10240020: {"name": "ジェンダー論", "credits": 2, "required": False},
